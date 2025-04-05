@@ -7,7 +7,7 @@ export default function AboutContent() {
                 </h2>
 
                 <p className="mt-4 sm:text-lg" style={{ margin: "30px 0" }}>
-                    DouBingo combines your love of bingo and being outdoors to deliver the perfect experience.
+                    DouBingo bridges the gap between tech and nature by combining your love of gaming and the outdoors.
                 </p>
                 <p className="mt-4 sm:text-lg" style={{ margin: "30px 0" }}>
                     Share your wildlife pictures with the world and move up on the leaderboard. #BinGoOutside today!

@@ -254,7 +254,7 @@ def detect_animal_route():
         if bingo_result:
             points += 1000
 
-            if arduino_light is not None and arduino_light > 400:
+            if arduino_light is not None and arduino_light > 600:
                 points += 500
             if arduino_tilt:
                 points += 500
