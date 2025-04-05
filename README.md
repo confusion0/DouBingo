@@ -1,2 +1,2 @@
-# hackathon-taus
+# DouBingo
 DouBingo is animal bingo.
