@@ -116,7 +116,7 @@ function BingoGameInner({ initialBingoData }: { initialBingoData: IBingoData }) 
             addMessage("✅ Detected animal: " + data.detected, "default", 7500);
             
             if(data.bingo) {
-                addMessage(`🙏 Bingo! +${data.points} points`, "default", 7500);
+                addMessage(`🙏 Bingo! +${data.points} points${data.light ? " | +500 for daylight" : ""}${data.tilt ? " | +500 for movement" : ""}`, "default", 7500);
             } else {
                 addMessage(`❌ Not a bingo. +${data.points} points`, "default", 7500);
             }

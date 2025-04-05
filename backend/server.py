@@ -166,6 +166,8 @@ def detect_animal_route():
     try:
         user_id = get_jwt_identity()
 
+        print(arduino_light, arduino_tilt)
+
         if 'image' not in request.files:
             return jsonify({"error": "No image file provided"}), 400
         
@@ -279,7 +281,9 @@ def detect_animal_route():
             "found": bingo_raw["found"],
             "detected": raw,
             "bingo": bingo_result,
-            "points": points
+            "points": points,
+            "light": arduino_light is not None and arduino_light > 400,
+            "tilt": arduino_tilt
         }), 200
     
     except Exception as e:
@@ -389,27 +393,25 @@ def read_from_arduino():
 
             if data:
                 if data.startswith("light"):
-                    arduino_light = int(data.split(":")[1])
+                    arduino_light = int(data.split(": ")[1])
                     
                     socketio.emit('light', {'light': arduino_light})
-                elif data.startswith("tilt"):
-                    if data.split(":")[1] == "true":
+                if data.startswith("tilt"):
+                    if data.split(": ")[1] == "true":
                         arduino_tilt = True
                     else:
                         arduino_tilt = False
 
                     socketio.emit('tilt', {'tilt': arduino_tilt})
-
-                print(f"Arduino data: {data}")
+            
         except Exception as e:
             print(f"Error reading from Arduino: {e}")
 
 
 init_serial()
-arduino_thread = Thread(target=read_from_arduino)
-arduino_thread.daemon = True
-arduino_thread.start()
+server_thread = Thread(target=lambda: socketio.run(app, port=8000))
+server_thread.start()
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=8000)
+    read_from_arduino()
