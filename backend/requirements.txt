@@ -1,0 +1,9 @@
+Flask==3.1.0
+flask_cors==5.0.1
+Flask_JWT_Extended==4.7.1
+Flask_SocketIO==5.5.1
+pymongo==4.11.3
+pyserial==3.5
+python-dotenv==1.1.0
+python_bcrypt==0.3.2
+Requests==2.32.3

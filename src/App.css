@@ -1,0 +1,78 @@
+@keyframes alert-message {
+    0% {
+        filter: opacity(1);
+        right: -100rem; /* Start off the screen */
+        bottom: 0rem;
+        width: auto;
+    }
+    10% {
+        filter: opacity(1);
+        right: 0rem; /* Slide into view */
+        bottom: 0rem;
+        width: auto;
+    }
+    90% {
+        filter: opacity(1);
+        right: 0rem; /* Stay in view for a moment */
+        bottom: 0rem;
+        width: auto;
+    }
+    95% {
+        filter: opacity(0.25);
+        right: 0rem; /* Stay in view for a moment */
+        bottom: 0rem;
+        width: auto;
+    }
+    100% {
+        filter: opacity(0);
+        right: 0rem;
+        bottom: -100rem; /* Slide out of view */
+        width: 0rem;
+    }
+}
+
+.app-form {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.app-form label {
+    display: block;
+    margin: 10px 0;
+}
+.app-form input {
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-left: 1em;
+}
+.app-form button {
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.app-link {
+    color: #00d95b;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.app-link:hover {
+    color: #fff;
+}
+
+.app-leaderboard {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+.app-leaderboard th,
+.app-leaderboard td {
+    border: 2px solid #fff3;
+    padding: 5px;
+}
+.app-leaderboard th {
+    font-weight: bold;
+    padding: 5px 15px;
+}
