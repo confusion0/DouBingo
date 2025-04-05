@@ -237,7 +237,7 @@ def detect_animal_route():
             for j in range(len(animals[i])):
                 if animals[i][j] == raw:
                     if found[i][j]:
-                        return jsonify({ "error": "The given animal has already been found!" }), 400
+                        return jsonify({ "error": f"The given animal ({raw}) has already been found!" }), 400
                     found[i][j] = True
                     break
         
