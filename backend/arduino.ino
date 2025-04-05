@@ -1,6 +1,6 @@
 /*
 Light sensor
-Date: 2025-04-04
+Date: 2025-04-05
 */
 const int tiltPin = 2;    // Pin connected to tilt sensor
 const int lightPin = A0;  // Pin connected to light sensor (photoresistor)
