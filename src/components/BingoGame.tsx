@@ -8,6 +8,7 @@ import { renderDatalessQuery, useBackendQuery } from "../utils/QueryUtils";
 import Button from "./Button";
 
 interface IBingoData {
+    score: number;
     found: boolean[][];
     animals: string[][];
 }
@@ -19,7 +20,8 @@ function BingoGameInner({ initialBingoData }: { initialBingoData: IBingoData }) 
     
     const { addMessage } = useMessage();
     const { token } = useAuthToken();
-
+    
+    const [score, setScore] = useState<number>(initialBingoData.score);
     const [animals, setAnimals] = useState<string[][]>(initialBingoData.animals);
     const [found, setFound] = useState<boolean[][]>(initialBingoData.found);
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -116,9 +118,10 @@ function BingoGameInner({ initialBingoData }: { initialBingoData: IBingoData }) 
             if(data.bingo) {
                 addMessage(`🙏 Bingo! +${data.points} points`, "default", 7500);
             } else {
-                addMessage("❌ Not a bingo", "default", 7500);
+                addMessage(`❌ Not a bingo. +${data.points} points`, "default", 7500);
             }
-
+            
+            setScore((prev) => prev + data.points);
             setFound(data.found);
             setAnimals(data.animals);
         } catch(error) {
@@ -128,7 +131,11 @@ function BingoGameInner({ initialBingoData }: { initialBingoData: IBingoData }) 
     
     return (
         <>  
-            <section className="container py-16 flex flex-col text-center">
+            <section className="container py-16 flex flex-col text-center gap-8" style={{ paddingTop: "2rem" }}>
+                <h3 className="font-bold text-3xl leading-[1.1]">
+                    DouBingo (<span className="text-[#00d95b]">{score}</span> points)
+                </h3>
+
                 <div className="grid grid-cols-4 gap-2 max-w-md mx-auto">
                     {animals.flat().map((animal, index) => (
                         <div
@@ -211,7 +218,7 @@ function BingoGameInner({ initialBingoData }: { initialBingoData: IBingoData }) 
     );
 }
 
-export default function BingoGame() {
+function BingoGameLoader() {
     const bingoDataQuery = useBackendQuery<IBingoData>("bingo-data");
 
     if(bingoDataQuery.status !== 'success') {
@@ -221,4 +228,20 @@ export default function BingoGame() {
     return (
         <BingoGameInner initialBingoData={ bingoDataQuery.data } />
     );
+}
+
+export default function BingoGame() {
+    const [showGame, setShowGame] = useState(false);
+
+    if(showGame) {
+        return <BingoGameLoader />;
+    } else {
+        return (
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "3rem" }}>
+                <Button onClick={ () => setShowGame(true) } style={{ borderRadius: "10px" }}>
+                    Start Game!
+                </Button>
+            </div>
+        )
+    }
 };

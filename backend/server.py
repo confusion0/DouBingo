@@ -201,7 +201,6 @@ def detect_animal_route():
         ]
         
         client = OpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com")
-
         response = client.chat.completions.create(
             model="deepseek-chat",
             messages=[{
@@ -224,10 +223,13 @@ def detect_animal_route():
         )
 
         raw = response.choices[0].message.content.strip()
-
+        
         if raw == "Unknown":
-            return jsonify({ "error": "Animal does not match the bingo squares." }), 400
-
+            return jsonify({ "error": "Animal not in bingo squares." }), 400
+        if raw not in animals:
+            return jsonify({ "error": "AI detection failed." }), 400
+        
+        print(f"Detected '{detected_animal}', Generalized: '{raw}', Light: {arduino_light}, Tilt: {arduino_tilt}")
         found = bingo_raw["found"]
         animals = bingo_raw["animals"]
 
@@ -240,7 +242,6 @@ def detect_animal_route():
                     break
         
         bingo_result = check_bingo(found, len(animals), 3)
-        points = 100
 
         users_collection.update_one({"_id": ObjectId(user_id)}, {"$set": {
             "bingo": json.dumps({
@@ -248,7 +249,8 @@ def detect_animal_route():
                 "found": found
             })
         }})
-
+        
+        points = 100
         if bingo_result:
             points += 1000
 
@@ -344,6 +346,7 @@ def bingo_data_route():
     bingo_raw = json.loads(user_raw["bingo"])
 
     bingo_data = {
+        "score": user_raw["score"],
         "found": bingo_raw["found"],
         "animals": bingo_raw["animals"]
     }

@@ -4,17 +4,7 @@ import CTA from '../components/CTA.tsx';
 import Footer from '../components/Footer.tsx';
 import MessageDisplay from '../components/MessageDisplay.tsx';
 
-import { useMessage } from '../context/MessageContext.tsx';
-
-import { useEffect } from 'react';
-
 export default function Home() {
-    const { addMessage } = useMessage();
-
-    useEffect(() => {
-        addMessage("test", "default")
-    }, []);
-    
     return (
         <div className="relative min-h-screen">
             <div className="pointer-events-none fixed inset-0">

@@ -14,6 +14,8 @@ export default function Footer() {
                 </div>
 
                 <div className="grid flex-1 grid-cols-2 gap-12 sm:grid-cols-3">
+                    <div className="space-y-4" />
+                    
                     <div className="space-y-4">
                         <h3 className="text-sm font-medium">Quick Links</h3>
 
@@ -28,13 +30,6 @@ export default function Footer() {
                                     Bingo
                                 </NavLink>
                             </li>
-                        </ul>
-                    </div>
-
-                    <div className="space-y-4">
-                        <h3 className="text-sm font-medium">Quick Links</h3>
-
-                        <ul className="space-y-3 text-sm">
                             <li>
                                 <NavLink to="/about" className="text-muted-foreground transition-colors hover:text-primary">
                                     Leaderboard
@@ -48,7 +43,7 @@ export default function Footer() {
 
                         <div className="flex space-x-4">
                             <NavLink
-                                to="https://github.com/confusion0/doubutsu"
+                                to="https://github.com/confusion0/DouBingo"
                                 className="text-muted-foreground transition-colors hover:text-primary"
                             >
                                 <Github className="h-5 w-5" />

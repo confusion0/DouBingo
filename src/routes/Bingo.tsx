@@ -5,6 +5,7 @@ import BingoGame from '../components/BingoGame.tsx';
 import Footer from '../components/Footer.tsx';
 import MessageDisplay from '../components/MessageDisplay.tsx';
 import Navbar from '../components/Navbar.tsx';
+import BingoInstructions from '../components/BingoInstructions.tsx';
 
 import { useAuthToken } from '../context/AuthTokenContext';
 
@@ -28,6 +29,7 @@ export default function Bingo() {
 
             <div className="relative z-10">
                 <Navbar />
+                <BingoInstructions />
                 <BingoGame />
                 <MessageDisplay />
                 <Footer />
