@@ -5,7 +5,7 @@ import random
 import os
 from dotenv import load_dotenv
 
-import google.generativeai as genai
+# import google.generativeai as genai
 
 load_dotenv()
 GOOGLE_API = os.getenv("GOOGLE_API")
@@ -88,7 +88,7 @@ class Bingo:
         result.animals = data["animals"]
         return result
 
-
+'''
 def classify(name: str) -> str:
     genai.configure(api_key=GOOGLE_API)
 
@@ -102,5 +102,5 @@ def classify(name: str) -> str:
     if res not in animals:
         res = "Invalid"
     return res
-
+'''
 
