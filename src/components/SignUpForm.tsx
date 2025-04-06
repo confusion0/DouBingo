@@ -26,7 +26,7 @@ export default function SignUpForm() {
     const doSignUp = async () => {
         try {
             addMessage("Signing up...", "default", 3000);
-            const request = await fetch('http://localhost:8000/sign-up', {
+            const request = await fetch('https://dou-bingo-fe8444453565.herokuapp.com/sign-up', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

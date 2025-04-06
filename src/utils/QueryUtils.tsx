@@ -4,7 +4,7 @@ import { useAuthToken } from "../context/AuthTokenContext";
 
 async function getBackendJson(url: string, token: string | null) {
     console.log("FETCH")
-    const response = await fetch("http://localhost:8000/" + url, {
+    const response = await fetch("https://dou-bingo-fe8444453565.herokuapp.com/" + url, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',

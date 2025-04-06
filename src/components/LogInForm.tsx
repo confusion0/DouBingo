@@ -26,7 +26,7 @@ export default function LogInForm() {
     const doSignUp = async () => {
         try {
             addMessage("Logging in...", "default", 3000);
-            const request = await fetch('http://localhost:8000/log-in', {
+            const request = await fetch('https://dou-bingo-fe8444453565.herokuapp.com/log-in', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

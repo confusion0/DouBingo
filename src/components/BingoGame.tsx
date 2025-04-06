@@ -96,7 +96,7 @@ function BingoGameInner({ initialBingoData }: { initialBingoData: IBingoData }) 
 
             addMessage("Checking bingo...", "loading", 7500);
 
-            const request = await fetch('http://localhost:8000/detect-animal', {
+            const request = await fetch('https://dou-bingo-fe8444453565.herokuapp.com/detect-animal', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer ' + token
