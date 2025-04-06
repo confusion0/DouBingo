@@ -1,4 +1,5 @@
 from threading import Thread
+from waitress import serve
 
 import secrets
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -407,11 +408,9 @@ def read_from_arduino():
         except Exception as e:
             print(f"Error reading from Arduino: {e}")
 
-
-init_serial()
-server_thread = Thread(target=lambda: socketio.run(app, port=8000))
-server_thread.start()
-
-
 if __name__ == '__main__':
+    init_serial()
+    server_thread = Thread(target=lambda: serve(app, host='0.0.0.0', port=8000))
+    server_thread.start()
+
     read_from_arduino()
