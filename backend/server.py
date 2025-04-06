@@ -34,7 +34,7 @@ socketio = SocketIO(app)
 CORS( 
     app,
     supports_credentials=True,
-    origins=["http://localhost:3000", "https://dou-bingo-9lx4.vercel.app/"]
+    origins=["http://localhost:3000", "https://dou-bingo-9lx4.vercel.app"]
 )
 
 secret_key = secrets.token_hex(16)
