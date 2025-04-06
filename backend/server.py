@@ -163,7 +163,8 @@ def check_bingo(found, n, win_k):
 def detect_animal_route():
     try:
         verify_jwt_in_request()
-    except Exception:
+    except Exception as e:
+        print(f"[ERROR] {e}")
         return {"error": "Please log in."}, 400
     
     try:
@@ -299,7 +300,8 @@ def detect_animal_route():
 def leaderboard():
     try:
         verify_jwt_in_request()
-    except Exception:
+    except Exception as e:
+        print(f"[ERROR] {e}")
         return {"error": "Please log in."}, 400
     
     users_collection = db["users"]
@@ -339,7 +341,8 @@ def user_route():
 def bingo_data_route():
     try:
         verify_jwt_in_request()
-    except Exception:
+    except Exception as e:
+        print(f"[ERROR] {e}")
         return {"error": "Please log in."}, 400
     
     user_id = get_jwt_identity()
