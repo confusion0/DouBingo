@@ -38,9 +38,7 @@ CORS(
     origins=["http://localhost:3000", "https://dou-bingo-9lx4.vercel.app"]
 )
 
-secret_key = secrets.token_hex(16)
-
-app.config['SECRET_KEY'] = secret_key
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = False
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
