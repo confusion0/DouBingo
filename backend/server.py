@@ -21,6 +21,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from dotenv import load_dotenv
 import os
+from datetime import timedelta
 
 from bingo import Bingo
 
@@ -42,6 +43,7 @@ secret_key = secrets.token_hex(16)
 app.config['SECRET_KEY'] = secret_key
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = False
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
 
 jwt = JWTManager(app)
 
