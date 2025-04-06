@@ -409,8 +409,11 @@ def read_from_arduino():
             print(f"Error reading from Arduino: {e}")
 
 if __name__ == '__main__':
-    init_serial()
-    server_thread = Thread(target=lambda: serve(app, host='0.0.0.0', port=8000))
-    server_thread.start()
+    if os.getenv("ENVIRONMENT") == "production":
+        serve(app, host='0.0.0.0', port=8000)
+    else:
+        init_serial()
+        server_thread = Thread(target=lambda: serve(app, host='0.0.0.0', port=8000))
+        server_thread.start()
 
-    read_from_arduino()
+        read_from_arduino()
