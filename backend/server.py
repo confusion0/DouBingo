@@ -416,7 +416,7 @@ if __name__ == '__main__':
         serve(app, host='0.0.0.0', port=8000)
     else:
         init_serial()
-        server_thread = Thread(target=lambda: serve(app, host='0.0.0.0', port=8000))
+        server_thread = Thread(target=lambda: socketio.run(app, port=8000))
         server_thread.start()
 
         read_from_arduino()
